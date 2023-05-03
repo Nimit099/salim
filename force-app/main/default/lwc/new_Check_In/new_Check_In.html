@@ -19,7 +19,9 @@
                                 <lightning-input-field field-name="buildertek__Days_Lost__c" value={daylost}
                                     data-name="daylost" onchange={handleInputChange}
                                     variant="label-stacked"></lightning-input-field>
-                                <lightning-file-upload label="Add Attachment"></lightning-file-upload>
+                                    <lightning-file-upload 
+                                    accept=" .png, .img"
+                                    label="Add Attachment" onuploadfinished={openfileUpload} multiple></lightning-file-upload>
                             </div>
                             <div class="inputfield2">
                                 <lightning-input-field field-name="buildertek__Project__c" value={projectid}
