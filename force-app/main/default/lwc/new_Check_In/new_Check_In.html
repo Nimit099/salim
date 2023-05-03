@@ -1,0 +1,51 @@
+<template>
+    <template if:true={modal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open mod">
+            <div class="modal">
+                <div class="header">
+                    <header> New Check-In</header>
+                </div>
+
+                <div class="body">
+                    <lightning-record-edit-form object-api-name="buildertek__Check_In__c" onsubmit={handleSubmit}
+                        onsuccess={handleSuccess}>
+                        <div class="inputpage">
+                            <div class="inputfield1">
+                                <lightning-input-field field-name="Name" value={name} variant="label-stacked"
+                                    data-name="name" onchange={handleInputChange} required="true"></lightning-input-field>
+                                <lightning-input-field field-name="buildertek__Notes__c" value={notes} data-name="notes"
+                                    onchange={handleInputChange} variant="label-stacked"></lightning-input-field>
+                                <lightning-input-field field-name="buildertek__Days_Lost__c" value={daylost}
+                                    data-name="daylost" onchange={handleInputChange}
+                                    variant="label-stacked"></lightning-input-field>
+                                <lightning-file-upload label="Add Attachment"></lightning-file-upload>
+                            </div>
+                            <div class="inputfield2">
+                                <lightning-input-field field-name="buildertek__Project__c" value={projectid}
+                                    data-name="projectid" onchange={handleInputChange} variant="label-stacked"
+                                    disabled={disabled}></lightning-input-field>
+                                <lightning-input-field field-name="buildertek__Reporting_Location__c" value={location}
+                                    data-name="location" onchange={handleInputChange}
+                                    variant="label-stacked"></lightning-input-field>
+                                <lightning-input-field field-name="buildertek__Weather__c" value={weather}
+                                    data-name="weather" onchange={handleInputChange}
+                                    variant="label-stacked"></lightning-input-field>
+                            </div>
+                        </div>
+                    </lightning-record-edit-form>
+                </div>
+
+                <div class="modalfooter">
+                    <lightning-button label="Cancel" class="cancel" data-name="cancel"
+                        onclick={handleButtonAction}></lightning-button>
+                    <lightning-button label="Save & New" class="savenew" data-name="savenew"
+                        onclick={handleButtonAction}></lightning-button>
+                    <lightning-button label="Save" class="save" data-name="save"
+                        onclick={handleButtonAction}></lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+</template>

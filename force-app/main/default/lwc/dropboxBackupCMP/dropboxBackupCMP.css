@@ -1,0 +1,261 @@
+* {
+  /* margin: 0;
+  padding: 0; */
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  height: 50vh;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #fcfcfc;
+  position: relative;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  width: 600px;
+  height: 260px;
+  background-color: #ffffff;
+  padding: 10px 30px 40px;
+}
+
+.card h3 {
+  font-size: 22px;
+  font-weight: 600;
+  
+}
+
+.drop_box {
+  margin: 10px 0;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 3px dotted #a3a3a3;
+  border-radius: 5px;
+}
+
+.drop_box h4 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2e2e2e;
+}
+
+.drop_box p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #a3a3a3;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #005af0;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+}
+
+.btn:hover{
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #005af0;
+  padding: 10px 20px;
+  border: none;
+  outline: 1px solid #010101;
+}
+.form input {
+  margin: 10px 0;
+  width: 100%;
+  background-color: #e2e2e2;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
+
+
+
+
+/* FOR FOLDERS */
+.cotainer-folder {
+      margin: 0;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #dee2ff;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 20vh;
+    overflow-y: auto;
+}
+
+.folder {
+  position: relative;
+  transition: all 0.3s ease;
+    margin: 0 10px;
+}
+
+.folder-front {
+  position: relative;
+  height: 100px;
+  width: 120px;
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  transform-origin: bottom right;
+}
+
+.folder-front::before {
+  content: "";
+  width: 25px;
+  height: 15px;
+  position: absolute;
+  top: -10px;
+  background-color: #5a7cb1;
+  border-radius: 5px;
+}
+
+.folder-back {
+  position: absolute;
+  z-index: 101;
+  height: 100px;
+  width: 100px;
+  background-color: #81a4cd;
+  transform-origin: bottom left;
+  border-bottom-left-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.folder-right {
+  position: absolute;
+  z-index: 101;
+  height: 100px;
+  top: 0%;
+  right: 0%;
+  width: 50px;
+  background-color: #81a4cd;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: all 0.3s ease;
+  transform-origin: bottom left;
+}
+
+.paper {
+  position: absolute;
+  z-index: 8;
+  top: 7px;
+  width: 70px;
+  height: 50px;
+  background-color: #acc1da;
+  left: 20%;
+  border-radius: 5px;
+}
+
+.paper:nth-child(2) {
+  top: 14px;
+  z-index: 9;
+  background-color: #c2d1e4;
+}
+
+.paper:nth-child(3) {
+  top: 20px;
+  z-index: 10;
+  background-color: white;
+}
+
+.folder:hover {
+  transform: translateY(-8px);
+  transition: all 0.3s linear;
+}
+.folder:hover .folder-back {
+  transform: skew(5deg) scaleY(0.7);
+  transform-origin: bottom left;
+  transition: all 0.3s linear;
+}
+.folder:hover .folder-front {
+  transition: all 0.3s linear;
+}
+.folder:hover .folder-right {
+  transform-origin: bottom right;
+  transform: skew(-5deg) scaleY(0.7);
+  transition: all 0.3s linear;
+}
+
+.files {
+  position: relative;
+  font-size: 12px;
+  color: white;
+  text-transform: uppercase;
+  z-index: 1000;
+  padding-left: 5px;
+  padding-top: 5px;
+  word-break: break-word;
+}
+
+part from folder .folder-front::before {
+  content: "";
+  width: 15px;
+  height: 10px;
+  background-color: #5a7cb1;
+  padding: 5px;
+  position: absolute;
+  top: -10px;
+  border-radius: 4px;
+}
+
+.dropbox_connect{
+  height: 32px;
+  width:200px;
+  background-color: rgb(55,160,228);
+  border: 1px solid rgba(0, 0, 0, 0.382);
+  color: white;
+  border-radius: 5px;
+  text-align: -webkit-center;
+  margin: auto;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.error-box header{
+  background-color: rgb(186,5,22);
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.error-box footer{
+  text-align-last: center;
+}
+.forward_class{
+  margin-left: 15px;
+}
+.cancel_btn{
+  height: 32px;
+  width:130px;
+  /* background-color: rgb(55,160,228); */
+  border: 1px solid rgba(0, 0, 0, 0.382);
+  color: black;
+  border-radius: 5px;
+  text-align: -webkit-center;
+  margin: auto;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.error-box header h1{
+  margin: 7px 9px;
+}
+.dropbox_logo{
+  height: 40px;
+  width: 50px;
+}

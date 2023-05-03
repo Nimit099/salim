@@ -1,0 +1,50 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!-- <force:recordData aura:id="forceRecordCmp" recordId="{!v.recordId}" fields="Id, Name" targetRecord="{!v.record}" targetFields="{!v.invoice}" targetError="{!v.error}" /> -->
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.init}" /> -->
+    <aura:attribute name="contentDocsList" type="List" />
+
+    <lightning:card title="Attached Images">
+        <div class="slds-m-around_medium" style="display: flex; overflow: auto; flex-direction: row; ">
+            <!-- <aura:iteration items="{!v.contentDocsList}" var="item"> -->
+                <div class="slds-m-horizontal_x-small">
+                    <!-- <lightning:fileCard fileId="{!item}" /> -->
+                    <lightning:fileCard fileId="06904000001K9g0AAC" />
+                </div>
+                <div class="slds-m-horizontal_x-small">
+                    <lightning:fileCard fileId="06904000001K9g5AAC" />
+                </div>
+                <div class="slds-m-horizontal_x-small">
+                    <lightning:fileCard fileId="06904000001K9gAAAS" />
+                </div>
+                <div class="slds-m-horizontal_x-small">
+                    <!-- <lightning:fileCard fileId="{!item}" /> -->
+                    <lightning:fileCard fileId="06904000001K9g0AAC" />
+                </div>
+                <div class="slds-m-horizontal_x-small">
+                    <lightning:fileCard fileId="06904000001K9g5AAC" />
+                </div>
+                <div class="slds-m-horizontal_x-small">
+                    <lightning:fileCard fileId="06904000001K9gAAAS" />
+                </div>
+            <!-- </aura:iteration> -->
+        </div>
+        <!-- <div class="slds-m-around_medium" style="display: flex; overflow: auto; flex-direction: row;">
+            
+                <div class="slds-m-horizontal_x-small">
+                    
+                    <lightning:fileCard fileId="06904000001K9g5AAC" />
+                    
+                </div>
+                
+        </div>
+        <div class="slds-m-around_medium" style="display: flex; overflow: auto; flex-direction: row;">
+            
+                <div class="slds-m-horizontal_x-small">
+                    
+                    <lightning:fileCard fileId="06904000001K9gAAAS" />
+                    
+                </div>
+                
+        </div> -->
+    </lightning:card>
+</aura:component>

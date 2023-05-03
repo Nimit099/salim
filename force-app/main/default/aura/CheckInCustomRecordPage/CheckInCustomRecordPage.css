@@ -1,0 +1,242 @@
+.THIS .main-body {
+
+}
+
+/* .THIS .main-body {
+    height: 85vh;
+    height: inherit;
+    padding: 16px;
+} */
+
+.THIS .main-body.cCheckInCustomRecordPage {
+    /* height: 85vh; */
+    height: inherit;
+    padding: 16px;
+}
+
+.THIS .tbl-header {
+    background: #272735;
+    border-radius: 8px 8px 0px 0px;
+    height: 50px;
+    display: flex;
+}
+
+.THIS .main-table-div {
+    height: 100%;
+}
+
+.THIS .tbl-hd-th {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 22px;
+    /* font-family: 'Poppins'; */
+    font-family: 'Verdana';
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 0px 16px;
+}
+
+.THIS .id-cell {
+    min-width: 100px;
+    width: 100px;
+}
+
+.THIS .name-cell {
+    min-width: 231px;
+    width: 231px;
+}
+
+.THIS .status-cell {
+    min-width: 160px;
+    width: 160px;
+}
+
+.THIS .notes-cell {
+    min-width: 360px;
+    width: 360px;
+}
+
+.THIS .photo-cell {
+    width: -webkit-fill-available;
+    overflow: auto;
+}
+
+.THIS .pc-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.THIS .td-txt {
+    /* font-family: 'Poppins'; */
+    font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    display: flex;
+    /* align-items: center; */
+    padding: 8px;
+
+}
+
+.THIS .tbl-body {
+    background: #FFFFFF;
+    /* height: 94%; */
+    height: 85%;
+    overflow-y: auto;
+}
+
+.THIS .ci-row {
+    display: flex;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.THIS .no-file-div {
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+}
+
+.THIS .status-clr-div[data-status^="No Issue"] {
+    width: 85px;
+    height: 26px;
+    background: #00CA4E;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.THIS .status-clr-div[data-status^="Minor Issue"] {
+    width: 104px;
+    height: 26px;
+    background: rgba(255, 189, 68, 0.5);
+    border-radius: 4px;
+    color: #000000;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.THIS .status-clr-div[data-status^="Project Haulted"] {
+    width: 125px;
+    height: 26px;
+    background: #FF605C;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.THIS .status-clr-div[data-status^="Major Issue"] {
+    width: 105px;
+    height: 26px;
+    background: #FFBD44;
+    border-radius: 4px;
+    color: #000000;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.THIS .slds-brand-band .slds-brand-band_cover {
+    background: #c2c2d5 !important;
+}
+
+.THIS .slds-brand-band.slds-brand-band_cover {
+    background: #c2c2d5 !important;
+}
+
+.THIS .tbl-footer {
+    /* position: absolute; */
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+
+    background: white;
+    border-radius: 0px 0px 8px 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.THIS .prv-btn {
+    width: 118px;
+    height: 42px;
+    border-radius: 6px;
+    /* font-family: 'Poppins'; */
+    font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.THIS .next-btn {
+    width: 93px;
+    height: 42px;
+    border-radius: 6px;
+    /* font-family: 'Poppins'; */
+    font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.THIS .active-btn {
+    background: #272735;
+    color: #FFFFFF;
+}
+
+.THIS .slds-button.slds-button--neutral {
+    background: #272735;
+    color: #FFFFFF;
+}
+
+.THIS .slds-button.slds-button--neutral:disabled {
+    background: rgba(39, 39, 53, 0.2);
+    color: #000000;
+    cursor: not-allowed;
+}
+
+
+/* For File Card (File Preview) */
+.THIS .forceContentFileCard {
+    width: 127px !important;
+    height: 132px !important;
+}
+
+.THIS .slds-file.slds-file--card {
+    height: inherit;
+}
+
+.THIS figure {
+    margin-top: 12px;
+}
+
+.THIS .main-file-cmp {
+    display: flex;
+    overflow: auto;
+    flex-direction: row;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 8px;
+}

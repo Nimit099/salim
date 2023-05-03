@@ -1,0 +1,74 @@
+<apex:page controller="DropBoxTesting" > 
+
+    <style>
+        .img img{
+            margin: 0 auto;
+        }
+        .img{
+            text-align-last: center;
+        }
+        .connectbtn{
+            height: 32px;
+            width:200px;
+            background-color: rgb(55,160,228);
+            border: 1px solid black;
+            color: white;
+            border-radius: 5px;
+            text-align: -webkit-center;
+            margin: auto;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 7px;
+        }
+        .connectbtn p {
+            margin: 6px;
+        }
+        .mainclass{
+            align-items: center;
+            text-align: center;
+        }
+        .texth2{
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+    </style>
+
+    <body>
+        <div class="img">
+            <apex:image url="{!$Resource.DropboxIntigration}"/>
+        </div>
+        <div class="mainclass">
+            <h2 class="texth2">Step 1 : First connect with drorpbox</h2>
+            <div onclick="authorization_function()" class="connectbtn">
+                <p>Connect with Dropbox</p>
+            </div><br />
+
+            <h2 class="texth2">Step 2 : Generate dropbox token</h2>
+            <div onclick="generatetoken_function()" class="connectbtn">
+                <p>Generate Token</p>
+            </div><br/>
+
+            <div onclick="javascript:window.close('','_parent','');" class="connectbtn">
+                <p>Close</p>
+            </div>
+
+            <apex:form > 
+                <apex:actionFunction name="Authorizationmethod" action="{!authorization}"/>
+                <apex:actionFunction name="generatetokenmethod" action="{!doFetchAccessToken}" />
+            </apex:form> 
+        </div>
+    </body>
+
+    <script>
+        function authorization_function(){
+            Authorizationmethod() ;
+        }
+        function generatetoken_function(){
+            generatetokenmethod() ;
+        }
+        function closewin(){
+            console.log('test button clicked');
+            window.close('','_parent','');
+        }
+    </script>
+  </apex:page>

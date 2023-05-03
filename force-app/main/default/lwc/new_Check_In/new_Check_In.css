@@ -1,0 +1,76 @@
+.modal{
+	width: 60%;
+	margin: 7% 20%
+}
+.header{
+	height: 70px;
+    background-color: #272735;
+    color: white;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	font-family: 'Poppins',sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 25px;
+	line-height: 38px;
+}
+.body{
+	background-color: white;
+    height: 410px;
+}
+.modalfooter{
+    background-color: white;
+    height: 70px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+    gap: 10px;
+}
+.fields{
+	display: flex;
+    width: 100%;
+    align-items: flex-start;
+}
+.field1{
+	width: 50%;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.save{
+	--sds-c-button-neutral-color-background : #272735;
+	--sds-c-button-neutral-color-background-hover: #272735;
+	--sds-c-button-text-color: white;
+	--sds-c-button-text-color-hover: white;
+	--sds-c-button-neutral-color-background-active: #272735;
+	--sds-c-button-text-color-active: white;
+}
+.savenew, .cancel{
+	--sds-c-button-text-color: #272735;
+	--sds-c-button-neutral-color-border: rgba(0, 0, 0, 0.5);
+	--sds-c-button-text-color-hover: #272735;
+	--sds-c-button-neutral-color-border-hover: rgba(0, 0, 0, 0.5);
+	--sds-c-button-text-color-active: #272735;
+	--sds-c-button-neutral-color-border-active: rgba(0, 0, 0, 0.5);
+}
+lightning-file-upload{
+    --sds-c-button-text-color: #272735;
+}
+.inputpage{
+    display: flex;
+    padding: 3%;
+    gap: 2%;
+}
+.inputfield1, .inputfield2{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 9%;
+}

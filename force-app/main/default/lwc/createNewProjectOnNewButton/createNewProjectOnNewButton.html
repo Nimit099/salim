@@ -1,0 +1,69 @@
+<template>
+    <div class="slds-modal__container">
+        <header class="slds-modal__header">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                onclick={closeNewObjectModal}>
+                <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small">
+                </lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"> {modalHeader} :
+                {selectedRecordType}
+            </h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+            <lightning-record-edit-form onload={handleRecordEditFormLoad} onsuccess={successNewRecordInsert}
+                object-api-name={objectName} record-type-id={selectedRecordType}>
+                <lightning-messages></lightning-messages>
+                <template if:true={uiPageLayoutView}>
+                    <lightning-layout multiple-rows="true">
+                        <lightning-layout-item size="12">
+                            <template for:each={uiPageLayoutView.sections} for:item="section">
+                                <div key={section.id} class="slds-grid slds-wrap">
+                                    <div class="row slds-grid slds-gutters row-width">
+                                        <h3 class="slds-p-vertical_xx-small slds-p-left_medium" style="font-size: 16px">
+                                            {section.heading}</h3>
+                                    </div>
+                                    <lightning-layout multiple-rows="true">
+                                        <template for:each={section.layoutRows} for:item="layoutRow">
+                                            <template for:each={layoutRow.layoutItems} for:item="layoutItem">
+                                                <template for:each={layoutItem.layoutComponents}
+                                                    for:item="layoutComponent">
+                                                    <lightning-layout-item key={layoutComponent.apiName} size="6" s
+                                                        padding="horizontal-small">
+                                                        <template if:true={layoutItem.editableForNew}>
+                                                            <lightning-input-field
+                                                                data-fieldname={layoutComponent.apiName}
+                                                                field-name={layoutComponent.apiName}
+                                                                required={layoutItem.required}></lightning-input-field>
+                                                        </template>
+                                                        <template if:false={layoutItem.editableForNew}>
+                                                            <template if:true={layoutComponent.apiName}>
+                                                                <lightning-output-field
+                                                                    field-name={layoutComponent.apiName}>
+                                                                </lightning-output-field>
+                                                            </template>
+                                                        </template>
+                                                    </lightning-layout-item>
+                                                </template>
+                                            </template>
+                                        </template>
+                                    </lightning-layout>
+                                </div>
+                            </template>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+                <lightning-messages></lightning-messages>
+            </lightning-record-edit-form>
+        </div>
+        <div class="footer-background-class">
+            <div class="slds-align_absolute-center slds-p-around_xx-small">
+                <lightning-button class="slds-m-around_xx-small" title="Cancel" label="Cancel"
+                    onclick={closeNewObjectModal}></lightning-button>
+                <lightning-button variant="brand" title="Save" onclick={submitRecordForm} name="Save" label="Save">
+                </lightning-button>
+            </div>
+        </div>
+    </div>
+</template>

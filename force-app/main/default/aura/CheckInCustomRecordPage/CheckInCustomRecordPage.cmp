@@ -1,0 +1,65 @@
+<aura:component controller="CheckInCustomRecordPageController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+
+    <aura:handler name="init" value="{!this}" action="{!c.getCheckInRecords}" />
+    <aura:attribute name="checkIns" type="list" />
+    <aura:attribute name="offset" type="integer" />
+    <aura:attribute name="next" type="boolean" />
+    <aura:attribute name="prev" type="boolean" />
+    <aura:attribute name="orgBaseURL" type="string" />
+
+    <div class="main-body" style="height: inherit;">
+        <div class="main-table-div">
+            <div class="tbl-header">
+                <div class="tbl-hd-th id-cell">Id</div>
+                <div class="tbl-hd-th name-cell">Check In Name</div>
+                <div class="tbl-hd-th status-cell">Status</div>
+                <div class="tbl-hd-th notes-cell">Notes</div>
+                <div class="tbl-hd-th photo-cell pc-hdr">Attached photos</div>
+            </div>
+
+            <div class="tbl-body">
+                <aura:iteration items="{!v.checkIns}" var="ci" indexVar="index">
+                    <div class="ci-row">
+                        <div class="td-txt id-cell"> {!v.offset + index + 1}</div>
+                        <!-- <div class="td-txt name-cell">{!ci.Name}</div> -->
+                        <div class="td-txt name-cell">
+                            <!-- <a href="{!orgBaseURL + '/' + ci.Id }" target="_blank">{!ci.Name}</a> -->
+                            <a href="{!orgBaseURL + '/' + ci.Id }">{!ci.Name}</a>
+                        </div>
+                        <div class="td-txt status-cell">
+                            <div class="status-clr-div" data-status="{!ci.buildertek__Status__c}">{!ci.buildertek__Status__c}</div>
+                        </div>
+                        <div class="td-txt notes-cell">{!ci.buildertek__Notes__c}</div>
+                        <div class="td-txt photo-cell">
+
+                            <aura:if isTrue="{!ci.ContentDocumentLinks}">
+                                <div class="main-file-cmp">
+                                    <aura:iteration items="{!ci.ContentDocumentLinks}" var="cd">
+                                        <div class="slds-m-horizontal_x-small">
+                                            <lightning:fileCard fileId="{!cd.ContentDocumentId}" />
+                                        </div>
+                                    </aura:iteration>
+                                </div>
+                            </aura:if>
+
+                            <aura:if isTrue="{!!ci.ContentDocumentLinks}">
+                                <div class="no-file-div">No Files Available</div>
+                            </aura:if>
+
+                        </div>
+                    </div>
+                </aura:iteration>
+            </div>
+
+            <div class="tbl-footer">
+                <ui:button class="prv-btn slds-button slds-button--neutral" press="{!c.Previous}" disabled="{!v.prev}">
+                    <span>Previous</span>
+                </ui:button>
+                <ui:button class="next-btn slds-button slds-button--neutral" press="{!c.Next}" disabled="{!v.next}" >
+                    <span>Next</span>
+                </ui:button>
+            </div>
+        </div>
+    </div>
+
+</aura:component>

@@ -1,0 +1,179 @@
+<template>
+
+	<!-- SPINNER -->
+	<template if:true={isLoaded}>
+		<lightning-spinner
+			alternative-text="Loading..." variant="brand" style="position:absolute;right:47%;bottom:50%;height:100%;width:100%;">
+		</lightning-spinner>
+	</template>
+	<!-- SPINNER -->
+	
+	<template if:true={vfpageerror}>
+		<!--Modal Box Start-->
+		<div role="dialog" class="slds-modal slds-fade-in-open error-box">
+			<div class="slds-modal__container">
+				<!--Modal Box Header Start-->
+				<header class="slds-modal__header">
+					<img src={durl} class="dropbox_logo"/>
+					<h1 class="slds-text-heading--medium">Dropbox Error</h1>
+				</header>
+				<!--Modal Box Header End-->
+				 
+				<!--Modal Box Content Start-->
+				<div class="slds-modal__content slds-p-around--medium">
+					<center><b>Dropbox are disconnected, Please click to below button.</b></center>
+				</div>
+				<!--Modal Box Content End-->
+				 
+				<!--Modal Box Button Start-->
+				<footer class="slds-modal__footer">
+					<button class="cancel_btn" onclick={cancel}>Cancel</button>
+					<button class="dropbox_connect" onclick={gotodropbox}>Go to Dropbox 
+						<svg class="slds-button__icon forward_class" aria-hidden="true" >
+							<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.28.0#forward_up"></use>
+						</svg>
+					</button>
+				</footer>
+				<!--Modal Box Button End-->
+			</div>
+		</div>
+		<div class="slds-backdrop slds-backdrop--open"></div>
+	</template>
+
+	
+		<div class="container">
+			<template if:true={isShow}>
+				<div class="card2">
+					<div class="drop_box2">
+						<input type="file" class="slds-hide" onchange={handleFileUploaded}/>
+						<button class="btn" onclick={btnClickHandler}>Upload New File</button>
+					</div>
+				</div>
+			</template>
+			<div>
+				<button class="slds-button slds-button_icon slds-button_icon-border" title="Refresh" alternative-text="Refresh" onclick={btnClickToRefresh} style="position:absolute;top:0;margin-right:40px;right:0">
+					<svg class="slds-button__icon" aria-hidden="true" >
+						<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.28.0#refresh"></use>
+					</svg>
+				</button>
+			</div>
+			<div>
+				<lightning-button-icon icon-name="utility:add" alternative-text="Settings" title="Settings"
+				onclick={createNewFolder} style="position:absolute;top:0;right:0"></lightning-button-icon>
+			</div>
+			<div>
+				<lightning-button-icon icon-name="utility:back" alternative-text="Settings" title="Settings"
+				onclick={previousFolder} style="position:absolute;top:0;right:0;margin-right:80px;"></lightning-button-icon>
+			</div>
+
+			<template if:false={isShow}>
+			<div class="card">
+				<h3>Upload Files</h3>
+				<div class="drop_box">
+					<header>
+						<h4>Select File here</h4>
+					</header>
+					<p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+					<input type="file" class="slds-hide" onchange={handleFileUploaded}/>
+					<button class="btn" onclick={btnClickHandler}>Choose File</button>
+				</div>
+			</div>
+		</template>
+		</div>
+		
+		<!-- <form action="#" class="form"> -->
+		
+		<template if:true={isShow}>
+		<div class="form">
+			<!-- form header -->
+			<div class="folderdiv">
+				<h1 class="form__title">{folderName}</h1>
+				<fieldset class="form__wrapper">
+		
+					<template for:each={newfolder} for:item="f">
+		
+						<!-- form folder -->
+						<fieldset class="form__folder" key={f.label}>
+							<input id={f.label} type="checkbox" data-fol={f.name} data-name={f.itemtype} onchange={handleCheckbox}>
+							<template if:false={f.itemtype}>
+								<img src={fimg} />
+							</template>
+							<template if:true={f.itemtype}>
+								<img src={flimg} />
+							</template>
+							<label for={f.label}>{f.name}</label>
+
+								<!-- for sub folder 1 -->
+								<template for:each={f.items} for:item="sf1">
+									<!-- embedded fildset -->
+									<fieldset class="form__folder form__subfolder" key={sf1.label}>
+										<input id={sf1.label} type="checkbox">
+										<div style="display: flex;">
+											<template if:false={sf1.itemtype}>
+												<img src={fimg} />
+											</template>
+											<template if:true={sf1.itemtype}>
+												<img src={flimg} />
+											</template>
+											<label for={sf1.label}>{sf1.name}</label>
+										</div>
+
+										<!-- for sub folder 1 -->
+										<template for:each={sf1.items} for:item="sf2"> 
+											<!-- embedded fildset -->
+											<fieldset class="form__folder form__subfolder" key={sf2.label}>
+												<input id={sf2.label} type="checkbox">
+												<div style="display: flex;">
+													<template if:false={sf2.itemtype}>
+														<img src={fimg} />
+													</template>
+													<template if:true={sf2.itemtype}>
+														<img src={flimg} />
+													</template>
+													<label for={sf2.label}>{sf2.name}</label>
+												</div>
+												<!-- form subfile 1 -->
+												<div class="form__subfolder">
+													<a href="#" class="level-2">level 2-1</a>
+													<a href="#" class="level-2">level 2-2</a>
+												</div>
+											</fieldset>
+										</template>
+									</fieldset>
+								</template>
+						</fieldset>
+
+					</template>
+				</fieldset>
+			</div>
+		
+		</div>
+	</template>
+
+	<template if:true={isModal}>
+		<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+			class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container">
+				<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+					<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+					<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+					</svg>
+					<span class="slds-assistive-text">Cancel and close</span>
+				</button>
+				<div class="slds-modal__header">
+					<h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Modal header</h1>
+				</div>
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<div class="slds-p-around_medium lgc-bg">
+						<lightning-input type="text" label="Enter Value" onchange={handlechange} value="" required></lightning-input>
+					</div>
+				</div>
+				<div class="slds-modal__footer">
+					<button class="slds-button slds-button_brand" onclick={cancel}>Cancel</button>
+					<button class="slds-button slds-button_brand" onclick={create}>Create</button>
+				</div>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+	</template>
+</template>

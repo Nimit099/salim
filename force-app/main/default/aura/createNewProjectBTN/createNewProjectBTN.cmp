@@ -1,0 +1,197 @@
+<!-- 
+    * Name          : createNewProjectBTN 
+    * Author        : Nitin (MV Clouds) 
+    * Created Date  : 09/11/2022 
+    * Description   : This Component used in New Button (in Project Record Page).  
+-->
+
+<aura:component
+    implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:isUrlAddressable,lightning:actionOverride,force:hasSObjectName"
+    access="global" controller="createNewProjectBTNController">
+
+
+    <aura:attribute name="Spinner" type="Boolean" default="false" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="disableBtn" type="Boolean" default="false" />
+
+    <aura:attribute name="btProject" type="buildertek__Project__c" default="{'sobjectType':'buildertek__Project__c'}" />
+
+
+
+    <aura:html tag="style">
+        .slds-col{
+        padding: 0 10px;
+        }
+    </aura:html>
+
+    <lightning:workspaceAPI aura:id="workspace" />
+
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+        aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create Project</h2>
+            </header>
+            
+
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+                <aura:if isTrue="{!v.Spinner}">
+                    <div aura:id="spinnerId" class="slds-spinner_container">
+                        <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </aura:if>
+
+                <lightning:recordEditForm aura:id="recordViewForm" objectApiName="buildertek__Project__c">
+                    <div style="background-color: white;">
+                        <div class="headingDiv"> Create Project </div>
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_1-of-2">
+
+                                <lightning:inputField fieldName="Name" value="{!v.btProject.Name}" />
+                                <lightning:inputField fieldName="buildertek__Stage__c"
+                                    value="{!v.btProject.buildertek__Stage__c}" />
+                                <lightning:inputField fieldName="buildertek__Type__c"
+                                    value="{!v.btProject.buildertek__Type__c}" />
+
+                                <lightning:inputField fieldName="FPL_Acct_no__c"
+                                    value="{!v.btProject.FPL_Acct_no__c}" />
+                                <lightning:inputField fieldName="Budget__c" value="{!v.btProject.Budget__c}" />
+                                <lightning:inputField fieldName="Est_Sales_Price__c"
+                                    value="{!v.btProject.Est_Sales_Price__c}" />
+                                <lightning:inputField fieldName="Property_Address__c"
+                                    value="{!v.btProject.Property_Address__c}" />
+                                <lightning:inputField fieldName="Architect__c" value="{!v.btProject.Architect__c}" />
+                                <lightning:inputField fieldName="Lender__c" value="{!v.btProject.Lender__c}" />
+                                <lightning:inputField fieldName="Owner_Entity__c"
+                                    value="{!v.btProject.Owner_Entity__c}" />
+                                <lightning:inputField fieldName="Title_Liens__c"
+                                    value="{!v.btProject.Title_Liens__c}" />
+                                <lightning:inputField fieldName="Water_Service_Requested__c"
+                                    value="{!v.btProject.Water_Service_Requested__c}" />
+                                <lightning:inputField fieldName="Water_Service_Request_Date__c"
+                                    value="{!v.btProject.Water_Service_Request_Date__c}" />
+                                <lightning:inputField fieldName="CurrencyIsoCode"
+                                    value="{!v.btProject.CurrencyIsoCode}" />
+                                <lightning:inputField fieldName="Listing_Agent__c"
+                                    value="{!v.btProject.Listing_Agent__c}" />
+                                <lightning:inputField fieldName="Was_Liability_insurance_purchased__c"
+                                    value="{!v.btProject.Was_Liability_insurance_purchased__c}" />
+                                <lightning:inputField fieldName="Liability_insurance_policy_exp_date__c"
+                                    value="{!v.btProject.Liability_insurance_policy_exp_date__c}" />
+
+
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning:inputField fieldName="buildertek__Customer__c"
+                                    value="{!v.btProject.buildertek__Customer__c}" />
+                                <lightning:inputField fieldName="buildertek__Project_Manager__c"
+                                    value="{!v.btProject.buildertek__Project_Manager__c}" />
+                                <lightning:inputField fieldName="Folio_Number__c"
+                                    value="{!v.btProject.Folio_Number__c}" />
+                                <lightning:inputField fieldName="Municipality__c"
+                                    value="{!v.btProject.Municipality__c}" />
+                                <lightning:inputField fieldName="Process_Type__c"
+                                    value="{!v.btProject.Process_Type__c}" />
+                                <lightning:inputField fieldName="Build_Type__c" value="{!v.btProject.Build_Type__c}" />
+                                <lightning:inputField fieldName="Number_of_Stories__c"
+                                    value="{!v.btProject.Number_of_Stories__c}" />
+                                <lightning:inputField fieldName="Process_Number__c"
+                                    value="{!v.btProject.Process_Number__c}" />
+                                <lightning:inputField fieldName="Link_to_Plantrack__c"
+                                    value="{!v.btProject.Link_to_Plantrack__c}" />
+                                <lightning:inputField fieldName="Link_to_Energov__c"
+                                    value="{!v.btProject.Link_to_Energov__c}" />
+                                <lightning:inputField fieldName="Master_Permit_Number__c"
+                                    value="{!v.btProject.Master_Permit_Number__c}" />
+                                <lightning:inputField fieldName="QTA_Status__c" value="{!v.btProject.QTA_Status__c}" />
+                                <lightning:inputField fieldName="Wasterwater_System__c"
+                                    value="{!v.btProject.Wasterwater_System__c}" />
+                                <lightning:inputField fieldName="Has_Lateral__c"
+                                    value="{!v.btProject.Has_Lateral__c}" />
+                                <lightning:inputField fieldName="Water_Meter_Request_Date__c"
+                                    value="{!v.btProject.Water_Meter_Request_Date__c}" />
+                                <lightning:inputField fieldName="Water_Meter_Requested__c"
+                                    value="{!v.btProject.Water_Meter_Requested__c}" />
+                                <lightning:inputField fieldName="buildertek__Project_Description__c"
+                                    value="{!v.btProject.buildertek__Project_Description__c}" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="headingDiv headingDiv-top-margin"> Sales Information </div>
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning:inputField fieldName="Unit_1_Buyer_Name__c"
+                                    value="{!v.btProject.Unit_1_Buyer_Name__c}" />
+                                <lightning:inputField fieldName="Unit_1_Buyer_Loan_type__c"
+                                    value="{!v.btProject.Unit_1_Buyer_Loan_type__c}" />
+                                <lightning:inputField fieldName="Unit_1_Buyer_Title_Company__c"
+                                    value="{!v.btProject.Unit_1_Buyer_Title_Company__c}" />
+                                <lightning:inputField fieldName="Unit_1_Buyer_Agent__c"
+                                    value="{!v.btProject.Unit_1_Buyer_Agent__c}" />
+                                <lightning:inputField fieldName="Unit_1_Sales_Price__c"
+                                    value="{!v.btProject.Unit_1_Sales_Price__c}" />
+                                <lightning:inputField fieldName="Unit_1_Sales_notes__c"
+                                    value="{!v.btProject.Unit_1_Sales_notes__c}" />
+
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning:inputField fieldName="Unit_2_Buyer_Name__c"
+                                    value="{!v.btProject.Unit_2_Buyer_Name__c}" />
+                                <lightning:inputField fieldName="Unit_2_Buyer_Loan_type__c"
+                                    value="{!v.btProject.Unit_2_Buyer_Loan_type__c}" />
+                                <lightning:inputField fieldName="Unit_2_Buyer_Title_Company__c"
+                                    value="{!v.btProject.Unit_2_Buyer_Title_Company__c}" />
+                                <lightning:inputField fieldName="Unit_2_Buyer_Agent__c"
+                                    value="{!v.btProject.Unit_2_Buyer_Agent__c}" />
+                                <lightning:inputField fieldName="Unit_2_Sales_Price__c"
+                                    value="{!v.btProject.Unit_2_Sales_Price__c}" />
+                                <lightning:inputField fieldName="Unit_2_Sales_Notes__c"
+                                    value="{!v.btProject.Unit_2_Sales_Notes__c}" />
+
+                            </div>
+                        </div>
+
+
+                        <div class="headingDiv headingDiv-top-margin"> Project Key Metrics </div>
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning:inputField fieldName="Acquisition_Date__c"
+                                    value="{!v.btProject.Acquisition_Date__c}" />
+                                <lightning:inputField fieldName="Construction_Start_Date__c"
+                                    value="{!v.btProject.Construction_Start_Date__c}" />
+                                <lightning:inputField fieldName="Shell_Completion_Date__c"
+                                    value="{!v.btProject.Shell_Completion_Date__c}" />
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning:inputField fieldName="Architect_Hire_Date__c"
+                                    value="{!v.btProject.Architect_Hire_Date__c}" />
+                                <lightning:inputField fieldName="Plan_Submittal_Date__c"
+                                    value="{!v.btProject.Plan_Submittal_Date__c}" />
+                                <lightning:inputField fieldName="CO_Date__c" value="{!v.btProject.CO_Date__c}" />
+                                <lightning:inputField fieldName="Sale_Date__c" value="{!v.btProject.Sale_Date__c}" />
+
+                            </div>
+                        </div>
+
+                    </div>
+                </lightning:recordEditForm>
+            </div>
+            <footer class="slds-modal__footer">
+                <lightning:button label="Cancel" title="Cancel" onclick="{!c.closePopup}" class="myBtn" />
+                <lightning:button variant="brand" label="Save" title="Save" onclick="{!c.createRecord}" disabled="{!v.disableBtn}" />
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+
+</aura:component>

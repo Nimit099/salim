@@ -1,0 +1,67 @@
+<aura:component controller="CreateNewCheckInBtnController"
+    implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:isUrlAddressable,lightning:actionOverride,force:hasSObjectName"
+    access="global">
+
+
+    <aura:attribute name="Spinner" type="Boolean" default="false" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="disableBtn" type="Boolean" default="false" />
+    <aura:attribute name="checkInRec" type="buildertek__Check_In__c" default="{'sobjectType':'buildertek__Check_In__c'}" />
+
+    <aura:html tag="style">
+        .slds-col{
+        padding: 0 10px;
+        }
+    </aura:html>
+
+    <lightning:workspaceAPI aura:id="workspace" />
+
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+        aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">New Check-In</h2>
+            </header>
+
+
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+                <aura:if isTrue="{!v.Spinner}">
+                    <div aura:id="spinnerId" class="slds-spinner_container">
+                        <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative"
+                            role="alert">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </aura:if>
+
+                <lightning:recordEditForm aura:id="recordViewForm" objectApiName="buildertek__Project__c">
+                    <div style="background-color: white;">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning:inputField fieldName="Name" value="{!v.checkInRec.Name}" />
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning:inputField fieldName="buildertek__Status__c"
+                                    value="{!v.checkInRec.buildertek__Status__c}" />
+                            </div>
+                        </div>
+
+                    </div>
+                </lightning:recordEditForm>
+
+            </div>
+
+            <footer class="slds-modal__footer">
+                <lightning:button label="Cancel" title="Cancel" onclick="{!c.closePopup}" class="myBtn" />
+                <lightning:button variant="brand" label="Save" title="Save" onclick="{!c.createRecord}"
+                    disabled="{!v.disableBtn}" />
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+
+</aura:component>
