@@ -24,5 +24,12 @@
             }
         });
         $A.enqueueAction(action);
-    }
+    },
+
+    openMultipleFiles: function(component, event, helper, selectedId) {
+		$A.get('e.lightning:openFiles').fire({
+		    recordIds: ['06904000001K9g0AAC', '06904000001KAcnAAG', '06904000001K9vVAAS'],
+		    selectedRecordId: selectedId
+		});
+	},
 })

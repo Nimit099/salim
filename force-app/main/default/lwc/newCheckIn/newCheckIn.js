@@ -33,6 +33,9 @@ export default class New_Check_In extends LightningElement {
             this.disabled = true;
         }
     }
+    @api opencheckin(){
+        this.modal = true;
+    }
 
     handleButtonAction(event) {
         try {

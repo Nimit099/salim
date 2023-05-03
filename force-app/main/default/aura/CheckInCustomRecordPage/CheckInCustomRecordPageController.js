@@ -18,4 +18,14 @@
         var offset = component.get("v.offset");
         helper.getCheckInRecords(component, next, prev, offset);
     },
+
+    onImageClick: function (component, event, helper) {
+
+        console.log('image clicked');
+        var imageId = event.getSource().get("v.id");
+        console.log(imageId);
+
+        helper.openMultipleFiles(component, event, helper, imageId);
+    },
+
 })
