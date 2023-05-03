@@ -1,7 +1,7 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api, track, wire } from 'lwc';
 import createCheckIn from '@salesforce/apex/NewCheckInController.createCheckIn';
 import deleteContentVersion from '@salesforce/apex/NewCheckInController.deleteContentVersion';
-
+import { CurrentPageReference } from 'lightning/navigation'
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class New_Check_In extends LightningElement {
@@ -19,8 +19,16 @@ export default class New_Check_In extends LightningElement {
     @track documentId = [];
     @track fileId = [];
 
+    @wire(CurrentPageReference)
+    getStateParameters(currentPageReference) {
+        if (currentPageReference) {
+            this.recordId = currentPageReference.state.recordId;
+        }
+    }
+
     connectedCallback() {
         this.projectid = this.recordId;
+        console.log(this.projectid + 'RecordIds');
         if (this.projectid != undefined) {
             this.disabled = true;
         }
@@ -145,7 +153,7 @@ export default class New_Check_In extends LightningElement {
         this.location = '';
         this.weather = '';
         this.fileId = [];
-        this.documentId =[];
+        this.documentId = [];
     }
 
 }
