@@ -150,18 +150,33 @@
 }
 
 .THIS a.slds-carousel__panel-action.slds-text-link_reset {
-    width: 100px;
-    height: 108px;
+    /* width: 100px; */
+    /* height: 108px; */
+    width: 127px;
+    height: 132px;
 }
 
 .THIS .slds-carousel__image>img {
-    height: 80px !important;
-    width: 98px;
+    /* height: 80px !important;
+    width: 98px; */
+    height: 100px !important;
+    width: 124px;
+    padding: 8px;
 }
 
 .THIS .slds-carousel__content {
     height: auto !important;
     font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0px 4px;
+}
+
+.THIS .slds-carousel__content p{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 

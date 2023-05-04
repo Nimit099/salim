@@ -1,35 +1,60 @@
 ({
     getCheckInRecords: function (component, next, prev, offset) {
-        offset = offset || 0;
-        var action = component.get("c.getCheckIns");
-        action.setParams({
-            "next": next,
-            "prev": prev,
-            "off": offset
-        });
-        action.setCallback(this, function (res) {
-            var state = res.getState();
-            if (state == "SUCCESS") {
-                var result = res.getReturnValue();
-                component.set('v.offset', result.offst);
-                component.set('v.checkIns', result.checkInList);
-                component.set('v.next', result.hasnext);
-                component.set('v.prev', result.hasprev);
-                component.set('v.orgBaseURL', result.orgBaseUrl);
+        try {
+        
+            offset = offset || 0;
+            var action = component.get("c.getCheckIns");
+            console.log('next => ' + next + ' - prev => ' + prev + ' - off => ' + offset);
+            action.setParams({
+                "next": next,
+                "prev": prev,
+                "off": offset
+            });
+            action.setCallback(this, function (res) {
+                var state = res.getState();
+                if (state == "SUCCESS") {
+                    var result = res.getReturnValue();
+                    console.log('result ==>' , result);
 
-                console.log('result ==>' , result);
+                    result.checkInList.forEach(element => {
+                        console.log('element ==> ',element);
+                    });
 
-                var tempList  = component.get('v.checkIns');
-                console.log('tempList ==>' , tempList);
-            }
-        });
-        $A.enqueueAction(action);
+                    component.set('v.offset', result.offst);
+                    component.set('v.checkIns', result.checkInList);
+                    component.set('v.next', result.hasnext);
+                    component.set('v.prev', result.hasprev);
+                    component.set('v.orgBaseURL', result.orgBaseUrl);
+                }
+            });
+            $A.enqueueAction(action);
+
+        } catch (error) {
+            console.log('Error in getCheckIn ==>');
+            console.log(error);
+        }
     },
 
     openMultipleFiles: function(component, event, helper, selectedId) {
+
+        var indexLst = selectedId.split("-");
+        console.log('indexLst ==>' + indexLst);
+        var fileId = indexLst[0];
+        var index = indexLst[1];
+
+        var checkInlist = component.get('v.checkIns');
+        var recordList = checkInlist[index].ContentDocumentLinks;
+        console.log(recordList);
+
+        var recordFilesId = [];
+        for (const res of recordList) {
+            recordFilesId.push(res.ContentDocumentId);
+        }
+
+        console.log(recordFilesId);
 		$A.get('e.lightning:openFiles').fire({
-		    recordIds: ['06904000001K9g0AAC', '06904000001KAcnAAG', '06904000001K9vVAAS'],
-		    selectedRecordId: selectedId
+		    recordIds: recordFilesId,
+		    selectedRecordId: fileId
 		});
 	},
 })

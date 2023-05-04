@@ -1,10 +1,6 @@
-.modal{
-	width: 60%;
-	margin: 7% 20%
-}
 .header{
 	height: 70px;
-    background-color: #272735;
+    background-color: #272735 !important;
     color: white;
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
@@ -32,18 +28,6 @@
     padding: 16px;
     gap: 10px;
 }
-.fields{
-	display: flex;
-    width: 100%;
-    align-items: flex-start;
-}
-.field1{
-	width: 50%;
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 .save{
 	--sds-c-button-neutral-color-background : #272735;
 	--sds-c-button-neutral-color-background-hover: #272735;
@@ -62,6 +46,8 @@
 }
 lightning-file-upload{
     --sds-c-button-text-color: #272735;
+    --sds-c-button-text-color-hover: #272735;
+    --sds-c-button-text-color-active: #272735;
 }
 .inputpage{
     display: flex;
@@ -73,4 +59,33 @@ lightning-file-upload{
     display: flex;
     flex-direction: column;
     gap: 9%;
+}
+
+/* .slds-modal__content {
+    height: unset !important;
+    max-height: unset !important;
+}  */
+.cuf-content {
+padding:  0rem !important;
+}
+.slds-p-around--medium {
+padding: 0rem !important;
+}
+.modal-content { 
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+}
+.slds-modal__header{
+    background-color: transparent;
+}
+.popup{
+    width: 101%;
+    margin: 12% auto;
+}
+.background{
+    display: none;
+}
+.modal-body{
+    --slds-c-modal-radius-border : 18px !important;
 }

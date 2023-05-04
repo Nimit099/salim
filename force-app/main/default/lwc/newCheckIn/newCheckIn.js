@@ -3,51 +3,62 @@ import createCheckIn from '@salesforce/apex/NewCheckInController.createCheckIn';
 import deleteContentVersion from '@salesforce/apex/NewCheckInController.deleteContentVersion';
 import { CurrentPageReference } from 'lightning/navigation'
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { CloseActionScreenEvent } from 'lightning/actions';
+
 
 export default class New_Check_In extends LightningElement {
     @api recordId;
 
-    @track modal = true;
-    @track disabled = false;
-
+    @track modal = true;                     // to show/hide modal
+    @track disabled = false;                 // to disable the project field
     @track name;
     @track notes;
     @track daylost;
     @track projectid;
     @track location;
     @track weather;
-    @track documentId = [];
-    @track fileId = [];
+    @track documentId = [];                // to get the document id of the attachment(for deleting files on cancel click)
+    @track fileId = [];                   // to get the contentversion id (for attaching to the record)
 
+    // get the record id when it open using quick action button
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
         if (currentPageReference) {
             this.recordId = currentPageReference.state.recordId;
-        }
+        } 
     }
 
     connectedCallback() {
         this.projectid = this.recordId;
-        console.log(this.projectid + 'RecordIds');
         if (this.projectid != undefined) {
-            this.disabled = true;
+            this.disabled = true;             // to disable the field if it open using quick action button    
         }
     }
-    @api opencheckin(){
-        this.modal = true;
+
+    renderedCallback(){
+        // to apply css on when it open without using quick action button in the record
+        if(this.projectid == undefined){
+            let element = this.template.querySelector('.popup');
+            element.style = 'width:60%; margin: 7% auto;';
+            element = this.template.querySelector('.background');
+            element.style = 'display:block;';
+        }
     }
 
     handleButtonAction(event) {
         try {
             let action = event.target.dataset.name;
             if (action === 'cancel') {
-                console.log('Cancel Btn clicked');
+                if(this.projectid != undefined || this.projectid != null){
+                     this.dispatchEvent(new CloseActionScreenEvent());        // to close the slds modal of quick action
+                }
+               // to delete files if it click cancel after uploading images
                 if (this.documentId.length > 0) {
                     deleteContentVersion({
                         documentId: this.documentId
                     })
                         .then(result => {
-
+                            console.log('OUTPUT : deleted files');
                         })
                         .catch((error) => {
                             console.log("Error acciured in deleteContentVersion apex method");
@@ -56,17 +67,20 @@ export default class New_Check_In extends LightningElement {
                 }
                 this.modal = false;
             } else if (action === 'savenew') {
-                console.log('Save and New Btn clicked');
+               // to reset every field
                 if ((this.name != null || this.name != undefined) && (this.name.trim() != '')) {
                     this.handleSaveData();
                     this.modal = true;
                     this.reset();
                 }
             } else if (action === 'save') {
-                console.log('Save Btn clicked');
+               // to save and close the popup
                 if ((this.name != null || this.name != undefined) && (this.name.trim() != '')) {
                     this.handleSaveData();
                     this.modal = false;
+                    if(this.projectid != undefined || this.projectid != null){
+                     this.dispatchEvent(new CloseActionScreenEvent());
+                }
                 }
             }
         } catch (error) {
@@ -76,6 +90,7 @@ export default class New_Check_In extends LightningElement {
     }
 
     handleInputChange(event) {
+        // to get the input of every fields
         if (event.currentTarget.dataset.name === 'name') {
             this.name = event.target.value;
         } else if (event.currentTarget.dataset.name === 'notes') {
@@ -92,6 +107,7 @@ export default class New_Check_In extends LightningElement {
     }
 
     handleSaveData() {
+        // to save data in the object 
         try {
             let checkInRecord = {
                 'sobjectType': 'buildertek__Check_In__c'
@@ -152,7 +168,9 @@ export default class New_Check_In extends LightningElement {
         this.name = '';
         this.notes = '';
         this.daylost = '';
+        if(recordId == undefined){  // it is used to not clear value of project field if it will create from record quick action button
         this.projectid = '';
+        }
         this.location = '';
         this.weather = '';
         this.fileId = [];
