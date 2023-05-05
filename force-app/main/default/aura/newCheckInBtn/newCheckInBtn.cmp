@@ -1,5 +1,5 @@
 <aura:component controller="NewCheckInBtnController"
-    implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:isUrlAddressable,lightning:actionOverride,force:hasSObjectName"
+    implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:isUrlAddressable,lightning:actionOverride,flexipage:availableForAllPageTypes,force:hasSObjectName "
     access="global">
 
     <aura:attribute name="recordId" type="String" />
@@ -103,8 +103,8 @@
             <div class="pop-body">
                 <div class="slds-col slds-size_1-of-2">
                     <!-- <div class="lbl-tx">Check In Name</div> -->
-                    <label for="checkInName" class="lbl-tx" aria-required="true">Check In Name</label>
-                    <lightning:inputField aura:id="checkInName" fieldName="Name" value="{!v.checkInRec.Name}" variant="label-hidden" />
+                    <label for="checkInName" class="lbl-tx" aria-required="true"><span class="cross">*</span> &nbsp;Check In Name</label>
+                    <lightning:inputField aura:id="checkInName" fieldName="Name" value="{!v.checkInRec.Name}" variant="label-hidden"  required="true"/>
                     
                     <label for="checkInNotes" class="lbl-tx">Notes</label>
                     <lightning:inputField aura:id="checkInNotes" fieldName="buildertek__Notes__c" value="{!v.checkInRec.buildertek__Notes__c}" variant="label-hidden" />
@@ -113,14 +113,17 @@
                     <lightning:inputField aura:id="checkInDaysLost" fieldName="buildertek__Days_Lost__c" value="{!v.checkInRec.buildertek__Days_Lost__c}" variant="label-hidden" />
                 </div>
                 <div class="slds-col slds-size_1-of-2">
-                    <label for="checkInProject" class="lbl-tx">Project</label>
-                    <lightning:inputField aura:id="checkInProject" disabled="{!v.desableProjectSelection}" fieldName="buildertek__Project__c" value="{!v.checkInRec.buildertek__Project__c}" variant="label-hidden" />
+                    <label for="checkInProject" class="lbl-tx"><span class="cross">*</span> &nbsp;Project</label>
+                    <lightning:inputField aura:id="checkInProject" disabled="{!v.desableProjectSelection}" fieldName="buildertek__Project__c" value="{!v.checkInRec.buildertek__Project__c}" variant="label-hidden" required="true" />
                     
                     <label for="checkInReportingLocation" class="lbl-tx">Check-In Location</label>
                     <lightning:inputField aura:id="checkInReportingLocation" fieldName="buildertek__Reporting_Location__c" value="{!v.checkInRec.buildertek__Reporting_Location__c}" variant="label-hidden" />
                     
                     <label for="checkInWeather" class="lbl-tx">Weather</label>
                     <lightning:inputField aura:id="checkInWeather" fieldName="buildertek__Weather__c" value="{!v.checkInRec.buildertek__Weather__c}" variant="label-hidden" />
+
+                    <label for="checkInWeather" class="lbl-tx"><span class="cross">*</span> &nbsp;Date Created</label>
+                    <lightning:inputField aura:id="checkInDateCreated" fieldName="buildertek__Date_Created__c" value="{!v.checkInRec.buildertek__Date_Created__c}" variant="label-hidden" required="true" />
                 </div>
             </div>
 

@@ -9,7 +9,8 @@ public without sharing class NewCheckInBtnController {
                 buildertek__Days_Lost__c = record.buildertek__Days_Lost__c,
                 buildertek__Project__c = record.buildertek__Project__c,
                 buildertek__Reporting_Location__c = record.buildertek__Reporting_Location__c,
-                buildertek__Weather__c = record.buildertek__Weather__c
+                buildertek__Weather__c = record.buildertek__Weather__c,
+                buildertek__Date_Created__c = record.buildertek__Date_Created__c
             );
             insert checkInRecord;
 
