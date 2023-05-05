@@ -25,7 +25,7 @@ export default class New_Check_In extends LightningElement {
     getStateParameters(currentPageReference) {
         if (currentPageReference) {
             this.recordId = currentPageReference.state.recordId;
-        } 
+        }
     }
 
     connectedCallback() {
@@ -35,13 +35,16 @@ export default class New_Check_In extends LightningElement {
         }
     }
 
-    renderedCallback(){
+    renderedCallback() {
         // to apply css on when it open without using quick action button in the record
-        if(this.projectid == undefined){
+        if (this.projectid == undefined) {
             let element = this.template.querySelector('.popup');
-            element.style = 'width:60%; margin: 7% auto;';
+            element.style = 'width:60%; margin: 11% auto;';
             element = this.template.querySelector('.background');
             element.style = 'display:block;';
+        } else {
+            let element = this.template.querySelector('.popup');
+            element.style = 'width:102% !important;';
         }
     }
 
@@ -49,10 +52,10 @@ export default class New_Check_In extends LightningElement {
         try {
             let action = event.target.dataset.name;
             if (action === 'cancel') {
-                if(this.projectid != undefined || this.projectid != null){
-                     this.dispatchEvent(new CloseActionScreenEvent());        // to close the slds modal of quick action
+                if (this.projectid != undefined || this.projectid != null) {
+                    this.dispatchEvent(new CloseActionScreenEvent());        // to close the slds modal of quick action
                 }
-               // to delete files if it click cancel after uploading images
+                // to delete files if it click cancel after uploading images
                 if (this.documentId.length > 0) {
                     deleteContentVersion({
                         documentId: this.documentId
@@ -67,20 +70,20 @@ export default class New_Check_In extends LightningElement {
                 }
                 this.modal = false;
             } else if (action === 'savenew') {
-               // to reset every field
+                // to reset every field
                 if ((this.name != null || this.name != undefined) && (this.name.trim() != '')) {
                     this.handleSaveData();
                     this.modal = true;
                     this.reset();
                 }
             } else if (action === 'save') {
-               // to save and close the popup
+                // to save and close the popup
                 if ((this.name != null || this.name != undefined) && (this.name.trim() != '')) {
                     this.handleSaveData();
                     this.modal = false;
-                    if(this.projectid != undefined || this.projectid != null){
-                     this.dispatchEvent(new CloseActionScreenEvent());
-                }
+                    if (this.projectid != undefined || this.projectid != null) {
+                        this.dispatchEvent(new CloseActionScreenEvent());
+                    }
                 }
             }
         } catch (error) {
@@ -168,8 +171,8 @@ export default class New_Check_In extends LightningElement {
         this.name = '';
         this.notes = '';
         this.daylost = '';
-        if(recordId == undefined){  // it is used to not clear value of project field if it will create from record quick action button
-        this.projectid = '';
+        if (recordId == undefined) {  // it is used to not clear value of project field if it will create from record quick action button
+            this.projectid = '';
         }
         this.location = '';
         this.weather = '';

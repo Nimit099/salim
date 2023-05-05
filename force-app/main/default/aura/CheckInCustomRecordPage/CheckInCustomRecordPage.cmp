@@ -7,20 +7,23 @@
     <aura:attribute name="prev" type="boolean" />
     <aura:attribute name="orgBaseURL" type="string" />
 
+    <aura:attribute name="currentPage" type="integer" />
+    <aura:attribute name="totalPage" type="integer" />
+
     <div class="main-body" style="height: inherit;">
         <div class="main-table-div">
             <div class="tbl-header">
-                <div class="tbl-hd-th id-cell">Id</div>
+                <div class="tbl-hd-th id-cell">No.</div>
                 <div class="tbl-hd-th name-cell">Check In Name</div>
-                <div class="tbl-hd-th status-cell">Status</div>
-                <div class="tbl-hd-th notes-cell">Notes</div>
+                <div class="tbl-hd-th status-cell st-txt">Status</div>
+                <div class="tbl-hd-th notes-cell js-center">Notes</div>
                 <div class="tbl-hd-th photo-cell pc-hdr">Attached photos</div>
             </div>
 
             <div class="tbl-body">
                 <aura:iteration items="{!v.checkIns}" var="ci" indexVar="index">
                     <div class="ci-row">
-                        <div class="td-txt id-cell"> {!v.offset + index + 1}</div>
+                        <div class="td-txt id-cell num-txt"> {!v.offset + index + 1}</div>
                         <!-- <div class="td-txt name-cell">{!ci.Name}</div> -->
                         <div class="td-txt name-cell">
                             <!-- <a href="{!orgBaseURL + '/' + ci.Id }" target="_blank">{!ci.Name}</a> -->
@@ -58,6 +61,49 @@
 
                         </div>
                     </div>
+
+                    <!-- for Tablet-view statrt-->
+
+                    <div class="ci-row-tab">
+                        <div class="pt-1-tab">
+                            <div class="id-tab">
+                                <div class="hdr-tab">No:</div>
+                                <div class="txt-tab">{!v.offset + index + 1}</div>
+                            </div>
+                            <div class="name-tab">
+                                <div class="hdr-tab">Check In Name:</div>
+                                <div class="txt-tab"><a href="{!orgBaseURL + '/' + ci.Id }">{!ci.Name}</a></div>
+                            </div>
+                            <div class="status-tab">
+                                <div class="hdr-tab">Status: &nbsp;</div>
+                                <div class="status-clr-div" data-status="{!ci.buildertek__Status__c}">{!ci.buildertek__Status__c}</div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2-tab">
+                            <div class="txt-tab note-tab">{!ci.buildertek__Notes__c}</div>
+                            <div class="file-div-tab">
+                                
+                                <aura:if isTrue="{!ci.ContentDocumentLinks}">
+                                    <div class="main-file-cmp">
+                                        <aura:iteration items="{!ci.ContentDocumentLinks}" var="cd" indexVar="indexNum">
+                                            <div class="slds-m-horizontal_x-small">
+                                                <lightning:carouselImage description="{!cd.ContentDocument.Title}" src="{!orgBaseURL + '/sfc/servlet.shepherd/document/download/' + cd.ContentDocumentId}" onclick="{!c.onImageClick}" id="{!cd.ContentDocumentId+'-'+index}"/>
+                                            </div>
+                                        </aura:iteration>
+                                    </div>
+                                </aura:if>
+                                
+                                <aura:if isTrue="{!!ci.ContentDocumentLinks}">
+                                    <div class="no-file-div">No Files Available</div>
+                                </aura:if>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- for Tablet-view end -->
+
                 </aura:iteration>
             </div>
 
@@ -65,6 +111,11 @@
                 <ui:button class="prv-btn slds-button slds-button--neutral" press="{!c.Previous}" disabled="{!v.prev}">
                     <span>Previous</span>
                 </ui:button>
+
+                <div class="pagintaion-num-div">
+                    <div> {!v.currentPage} of {!v.totalPage}</div>
+                </div>
+
                 <ui:button class="next-btn slds-button slds-button--neutral" press="{!c.Next}" disabled="{!v.next}" >
                     <span>Next</span>
                 </ui:button>

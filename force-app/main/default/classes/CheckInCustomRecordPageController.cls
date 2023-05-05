@@ -17,6 +17,9 @@ public without sharing class CheckInCustomRecordPageController {
 
     @AuraEnabled 
     public String orgBaseUrl = '';
+
+    @AuraEnabled 
+    public integer totalPage;
     
     private static integer pagesize = 5;
     private static integer offset;
@@ -47,6 +50,7 @@ public without sharing class CheckInCustomRecordPageController {
         pageController.hasprev = hasprev(offset);   
         pageController.hasnext = hasnxt(offset,listlength,pagesize);
         pageController.orgBaseUrl = URL.getSalesforceBaseUrl().toExternalForm();
+        pageController.totalPage = integer.valueOf(Math.ceil(Decimal.valueOf(listlength)/pagesize));
         
         return pageController;
     }

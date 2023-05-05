@@ -25,6 +25,9 @@
                     component.set('v.next', result.hasnext);
                     component.set('v.prev', result.hasprev);
                     component.set('v.orgBaseURL', result.orgBaseUrl);
+
+                    component.set('v.currentPage', (result.offst/5)+1);
+                    component.set('v.totalPage', result.totalPage);
                 }
             });
             $A.enqueueAction(action);

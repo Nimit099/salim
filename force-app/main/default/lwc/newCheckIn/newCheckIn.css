@@ -65,9 +65,9 @@ lightning-file-upload{
     height: unset !important;
     max-height: unset !important;
 }  */
-.cuf-content {
+/* .cuf-content {
 padding:  0rem !important;
-}
+} */
 .slds-p-around--medium {
 padding: 0rem !important;
 }
@@ -81,11 +81,24 @@ padding: 0rem !important;
 }
 .popup{
     width: 101%;
-    margin: 12% auto;
+    margin: 22% auto;
 }
 .background{
     display: none;
 }
 .modal-body{
     --slds-c-modal-radius-border : 18px !important;
+}
+
+@media (min-width: 700px) and (max-width: 1100px){
+    .popup{
+        width: 80% !important;
+        margin: 30% auto !important;
+    }
+    .header, .modalfooter{
+        height: 72px;
+    }
+    .body{
+        height: 501px;
+    }
 }
