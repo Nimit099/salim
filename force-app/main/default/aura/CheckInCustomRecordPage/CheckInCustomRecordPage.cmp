@@ -2,6 +2,7 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.getCheckInRecords}" />
     <aura:attribute name="checkIns" type="list" />
+    <aura:attribute name="recordId" type="String" />
     <aura:attribute name="offset" type="integer" />
     <aura:attribute name="next" type="boolean" />
     <aura:attribute name="prev" type="boolean" />
@@ -16,8 +17,8 @@
                 <div class="tbl-hd-th id-cell">No.</div>
                 <div class="tbl-hd-th name-cell">Check In Name</div>
                 <div class="tbl-hd-th status-cell st-txt">Status</div>
-                <div class="tbl-hd-th notes-cell js-center">Notes</div>
-                <div class="tbl-hd-th photo-cell pc-hdr">Attached photos</div>
+                <div class="tbl-hd-th notes-cell js-center pd-none-div">Notes</div>
+                <div class="tbl-hd-th photo-cell pc-hdr hgt-aut">Attached photos</div>
             </div>
 
             <div class="tbl-body">
@@ -32,8 +33,10 @@
                         <div class="td-txt status-cell">
                             <div class="status-clr-div" data-status="{!ci.buildertek__Status__c}">{!ci.buildertek__Status__c}</div>
                         </div>
-                        <div class="td-txt notes-cell">{!ci.buildertek__Notes__c}</div>
-                        <div class="td-txt photo-cell">
+                        <div class="td-txt notes-cell">
+                            <div class="notes-border-div">{!ci.buildertek__Notes__c}</div>
+                        </div>
+                        <div class="td-txt photo-cell ph-hg-at">
 
                             <!-- <aura:if isTrue="{!ci.ContentDocumentLinks}">
                                 <div class="main-file-cmp">

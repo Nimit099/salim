@@ -1,5 +1,5 @@
 <aura:component controller="NewCheckInBtnController"
-    implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:isUrlAddressable,lightning:actionOverride,flexipage:availableForAllPageTypes,force:hasSObjectName "
+    implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:isUrlAddressable,lightning:actionOverride,flexipage:availableForAllPageTypes,force:hasSObjectName"
     access="global">
 
     <aura:attribute name="recordId" type="String" />
@@ -11,6 +11,7 @@
     <aura:attribute name="Spinner" type="boolean" default="false" />
     <aura:attribute name="desableProjectSelection" type="boolean" default="false" />
     <aura:attribute name="desableSaveBtn" type="boolean" default="false" />
+    <aura:attribute name="orgBaseURL" type="string" />
     <aura:attribute name="checkInRec" type="buildertek__Check_In__c" default="{'sobjectType':'buildertek__Check_In__c'}" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
@@ -80,6 +81,18 @@
             display: none;
         }
 
+        .slds-carousel__image>img {
+            min-width: 110px;
+            width: 110px;
+            height: 100px;
+            padding: 8px;
+        }
+
+        .slds-carousel__content.content-container {
+            height: auto;
+            padding:0px;
+        }
+
     </aura:html>
 
     <aura:if isTrue="{!v.Spinner}">
@@ -133,6 +146,19 @@
                                         onuploadfinished="{!c.handleUploadFinished}" />
             </div>
 
+            <!-- File Preview section -->
+            <aura:if isTrue="{!not(empty(v.uploadedFileId))}">
+                <div class="file-div-tab">
+                    <div class="main-file-cmp">
+                        <aura:iteration items="{!v.uploadedFileId}" var="cd" indexVar="indexNum">
+                            <div class="slds-m-horizontal_x-small">
+                                <!-- <lightning:carouselImage src="{!orgBaseURL + '/sfc/servlet.shepherd/document/download/' + cd}" onclick="{!c.onImageClick}" id="{!cd}"/> -->
+                                <lightning:carouselImage src="{!orgBaseURL + '/sfc/servlet.shepherd/document/download/' + cd}" id="{!cd}"/>
+                            </div>
+                        </aura:iteration>
+                    </div>
+                </div>
+            </aura:if>
 
         </lightning:recordEditForm>
     </div>

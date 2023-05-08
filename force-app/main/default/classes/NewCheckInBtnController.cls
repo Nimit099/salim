@@ -53,4 +53,9 @@ public without sharing class NewCheckInBtnController {
         }
     }
 
+    @AuraEnabled
+    public static String getOrgBaseURL() {
+        return URL.getSalesforceBaseUrl().toExternalForm();
+    }
+
 }

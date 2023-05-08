@@ -50,7 +50,7 @@
                     }
                 });
             } else {
-                helper.showToast("Error", "Error", "Please complete required fields.", "5000");
+                helper.showToast("warning", "Required Fields Missing", "Please complete required fields.", "5000");
             }
             $A.enqueueAction(action);
             component.set("v.Spinner", false);

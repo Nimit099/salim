@@ -63,3 +63,18 @@
 .THIS .cross{
     color: red;
 }
+
+.THIS .main-file-cmp {
+    display: flex;
+    align-items: center;
+}
+
+.THIS .file-div-tab {
+    display: flex;
+    width: auto;
+    height: 120px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    margin: 4px 16px 0px 16px;
+    overflow-x: auto;
+}

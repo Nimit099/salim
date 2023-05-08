@@ -1,14 +1,16 @@
 ({
     getCheckInRecords: function (component, next, prev, offset) {
         try {
-        
+            var recordId = component.get("v.recordId");
+            console.log('recordID for checkins ==>' + recordId);
             offset = offset || 0;
             var action = component.get("c.getCheckIns");
             console.log('next => ' + next + ' - prev => ' + prev + ' - off => ' + offset);
             action.setParams({
                 "next": next,
                 "prev": prev,
-                "off": offset
+                "off": offset,
+                "projectId": recordId
             });
             action.setCallback(this, function (res) {
                 var state = res.getState();
